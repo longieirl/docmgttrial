@@ -117,7 +117,7 @@
             }
         },
        "resourceRoots": {
-             "com.sap.ecm.reuse.documentTable": "./../<YOUR-MANAGED-APP-ID>.comsapecmreuse.comsapecmreusedocumentTable-1.0.0/"             
+            "com.sap.ecm.reuse.documentTable": "./../../comsapecmreuse.comsapecmreusedocumentTable"         
        }
     },
     "sap.cloud": {

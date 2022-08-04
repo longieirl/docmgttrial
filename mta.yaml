@@ -83,8 +83,10 @@ resources:
             Name: sdibackend
             ProxyType: Internet
             Type: HTTP
-            URL: https://api-sdm-di.cfapps.<YOUR-API-REGION>.hana.ondemand.com
-            forwardAuthToken: true            
+            URL: https://api-sdm-di.cfapps.eu11.hana.ondemand.com
+            forwardAuthToken: true
+            "HTML5.DynamicDestination": true
+            "HTML5.forwardAuthToken": true         
           existing_destinations_policy: update
       version: 1.0.0
     service: destination
