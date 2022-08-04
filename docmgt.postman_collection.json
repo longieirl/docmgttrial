@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "ae48680f-f50d-466b-bcf9-2527881c8c43",
+		"name": "docmgt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://api-sdm-di.cfapps.eu11.hana.ondemand.com/browser",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "<replace-with-your-value>",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "<replace-with-your-value>",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "<replace-with-your-value>",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "<replace-with-your-value>",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "<replace-with-your-value>",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://<replace-with-your-value>.authentication.<replace-with-your-value>.hana.ondemand.com/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "staging",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://<replace-with-your-value>.authentication.<replace-with-your-value>.hana.ondemand.com/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api-sdm-di.cfapps.eu11.hana.ondemand.com/browser",
+					"protocol": "https",
+					"host": [
+						"api-sdm-di",
+						"cfapps",
+						"eu11",
+						"hana",
+						"ondemand",
+						"com"
+					],
+					"path": [
+						"browser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api-sdm-di.cfapps.eu11.hana.ondemand.com/rest/v2/repositories",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "<replace-with-your-value>",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "<replace-with-your-value>",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "<replace-with-your-value>",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "<replace-with-your-value>",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "<replace-with-your-value>",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://<replace-with-your-value>.authentication.<replace-with-your-value>.hana.ondemand.com/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "staging",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://<replace-with-your-value>.authentication.eu10.hana.ondemand.com/oauth/token",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"repository\": {\n\t\t\"displayName\": \"SAP Document Mgt\",\n\t\t\"description\": \"SAP Document Mgt\",\n\t\t\"repositoryType\": \"internal\",\n\t\t\"isVersionEnabled\":\"true\",\n\t\t\"isVirusScanEnabled\":\"false\",\n\t\t\"skipVirusScanForLargeFile\": \"true\",\n\t\t\"hashAlgorithms\":\"SHA-256\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-sdm-di.cfapps.eu11.hana.ondemand.com/rest/v2/repositories",
+					"protocol": "https",
+					"host": [
+						"api-sdm-di",
+						"cfapps",
+						"eu11",
+						"hana",
+						"ondemand",
+						"com"
+					],
+					"path": [
+						"rest",
+						"v2",
+						"repositories"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

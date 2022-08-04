@@ -23,7 +23,7 @@ modules:
         name: docmgttrial-uaa-key
   parameters:
     content:
-      instance:
+      subaccount:
         destinations:
         - Name: docmgttrial_html_repo_host
           ServiceInstanceName: docmgttrial-html5-srv
@@ -38,7 +38,7 @@ modules:
           Authentication: OAuth2UserTokenExchange
           ServiceInstanceName: sapcommunity_dm
           ServiceKeyName: sdm-key          
-        existing_destinations_policy: ignore
+        existing_destinations_policy: update
   build-parameters:
     no-source: true
 - name: docmgttrial-app-content
@@ -84,9 +84,7 @@ resources:
             ProxyType: Internet
             Type: HTTP
             URL: https://api-sdm-di.cfapps.eu11.hana.ondemand.com
-            forwardAuthToken: true
-            "HTML5.DynamicDestination": true
-            "HTML5.forwardAuthToken": true         
+            forwardAuthToken: true      
           existing_destinations_policy: update
       version: 1.0.0
     service: destination
