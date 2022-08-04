@@ -1,0 +1,114 @@
+_schema-version: "3.2"
+ID: docmgttrial
+description: A Fiori application.
+version: 0.0.1
+modules:
+- name: docmgttrial-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: sapcommunity_dm
+    parameters:
+      service-key:
+        name: sdm-key  
+  - name: docmgttrial-destination-service
+    parameters:
+      content-target: true
+  - name: docmgttrial-repo-host
+    parameters:
+      service-key:
+        name: docmgttrial-repo-host-key
+  - name: docmgttrial-uaa
+    parameters:
+      service-key:
+        name: docmgttrial-uaa-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: docmgttrial_html_repo_host
+          ServiceInstanceName: docmgttrial-html5-srv
+          ServiceKeyName: docmgttrial-repo-host-key
+          sap.cloud.service: docmgttrial
+        - Authentication: OAuth2UserTokenExchange
+          Name: docmgttrial_uaa
+          ServiceInstanceName: docmgttrial-xsuaa-srv
+          ServiceKeyName: docmgttrial-uaa-key
+          sap.cloud.service: docmgttrial
+        - Name: docmgttrial_sapcommunity_dm
+          Authentication: OAuth2UserTokenExchange
+          ServiceInstanceName: sapcommunity_dm
+          ServiceKeyName: sdm-key          
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: docmgttrial-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: docmgttrial-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - docmgttrial.zip
+      name: docmgttrial
+      target-path: resources/
+- name: docmgttrial
+  type: html5
+  path: .
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: docmgttrial-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          - Authentication: NoAuthentication
+            Name: sdibackend
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://api-sdm-di.cfapps.<YOUR-API-REGION>.hana.ondemand.com
+            forwardAuthToken: true            
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: docmgttrial-destination-service
+    service-plan: lite
+- name: docmgttrial-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: docmgttrial-xsuaa-srv
+    service-plan: application
+- name: docmgttrial-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: docmgttrial-html5-srv
+    service-plan: app-host
+- name: sapcommunity_dm
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service: sdm
+    service-name: sapcommunity_dm
+    service-plan: standard    
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
